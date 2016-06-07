@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<HTML>
+	<HEAD>
+		<TITLE>Color Guessing Game</TITLE>
+	</HEAD>
+	<BODY onload="do_game()">
+		<SCRIPT>
+			var color=["aquamarine","bisque","coral","crimson","darkcyan","darksalmon","darkslateblue","forestgreen","gold","indianred","indigo","mistyrose","limegreen","orange","teal"];
+			var finish=false;
+			var count=0;
+			var target_color;
+			var guess;
+			function do_game()
+			{
+				var random_number = Math.random() * 15;
+				var random_number_integer = Math.floor(random_number);
+				target_color= color[random_number_integer];
+				//alert("The color is "+target_color);
+				while(!finish)
+				{
+					guess=prompt("I am thinking of one of these colors:"+
+											"\n\naquamarine,bisque,coral,crimson,darkcyan,darksalmon,"+
+											"darkslateblue,forestgreen,gold,indianred,indigo,mistyrose,limegreen,orange,teal\n\nWhat color am i thinking of?");
+					count++;
+					finish=check_guess();
+				}
+			}
+			function check_guess()
+			{
+				var flag=false;
+				for(i=0;i<15;i++)
+				{
+					if(guess==color[i])
+					{
+						flag=true;
+						break;
+					}
+				}
+				if(!flag)
+				{
+					alert("Sorry, I don't recognise your color.\n\n Please try again.");
+					return false;
+				}
+				else{
+					if(guess==target_color)
+					{
+						document.body.style.backgroundColor = target_color;
+						alert("Congrats! you guessed the color!\n\nIt took you "+
+									count+" guesses to guess correctly.\n\n"+
+									"You can see the color in the background");
+						return true;
+					}
+					else if(guess>target_color)
+					{
+						alert("Sorry your guess is not correct.\n\n"+
+									"Hint: Your color is alphabetically higher than mine\n\n"+
+									"Please try again");
+						return false;
+					}
+					else if(guess<target_color)
+					{
+						alert("Sorry your guess is not correct.\n\n"+
+									"Hint: Your color is alphabetically lower than mine\n\n"+
+									"Please try again");
+						return false;
+					}
+				}
+			}
+		</SCRIPT>
+	</BODY>
+</HTML>

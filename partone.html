@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<HTML>
+	<HEAD>
+		<TITLE>Color Guessing Game</TITLE>
+	</HEAD>
+	<BODY onload="do_game()">
+		<SCRIPT>
+			var color=["aquamarine","bisque","coral","crimson","darkcyan","darksalmon","darkslateblue","forestgreen","gold","indianred","indigo","mistyrose","limegreen","orange","teal"];
+			var finish=false;
+			var count=0;
+			var target_color;
+			var guess;
+			function do_game()
+			{
+				var random_number = Math.random() * 15;
+				var random_number_integer = Math.floor(random_number);
+				target_color= color[random_number_integer];
+				//alert("The color is "+target_color);
+				while(!finish)
+				{
+					guess=prompt("I am thinking of one of these colors:"+
+											"\n\naquamarine,bisque,coral,crimson,darkcyan,darksalmon,"+
+											"darkslateblue,forestgreen,gold,indianred,indigo,mistyrose,limegreen,orange,teal\n\nWhat color am i thinking of?");
+					count++;
+					if(guess==target_color)
+					{
+						document.body.style.backgroundColor = target_color;
+						finish=true;
+					}
+					//finish=check_guess();
+				}
+			}
+			/*function check_guess()
+			{
+				if(guess==target_color)
+				{
+					document.body.style.backgroundColor = target_color;
+					alert("Congrats! you guessed the color!\n\nIt took you"+
+								count+"guesses to guess correctly.");
+					return true;
+				}
+			}*/
+		</SCRIPT>
+	</BODY>
+</HTML>
